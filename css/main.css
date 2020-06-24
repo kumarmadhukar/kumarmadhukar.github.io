@@ -22,7 +22,7 @@ a:hover {
     text-decoration: underline;
 }
 
-nav ul li.active {
+nav ul li a.active {
     text-decoration: underline;
 }
 
