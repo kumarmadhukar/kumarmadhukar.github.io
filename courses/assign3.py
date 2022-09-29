@@ -1,8 +1,7 @@
 import sys
 
 # Do not change the name of the function. 
-# Do not use global variables as we will run your code on 
-# test cases.
+# Do not use global variables as we will run your code on multiple test cases.
 # 
 def solve(inputString, n):
 	#
