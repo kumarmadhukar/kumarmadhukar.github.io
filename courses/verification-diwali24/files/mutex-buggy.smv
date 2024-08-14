@@ -1,0 +1,32 @@
+
+MODULE main
+
+  VAR
+	p1: process proc(p2.st);
+	p2: process proc(p1.st);
+
+  -- safety
+  LTLSPEC G !((p1.st = c) & (p2.st = c))
+  -- liveness
+  LTLSPEC G((p1.st = t) -> F (p1.st = c))
+  LTLSPEC G((p2.st = t) -> F (p2.st = c))
+
+MODULE proc(other-st)
+
+  VAR
+	st: {n, t, c};
+
+  ASSIGN
+	init(st) := n;
+	next(st) :=
+		case
+			(st = n) : {t, n};
+			(st = t) & (other-st != c) : {c};
+			(st = c) : {c, n};
+			TRUE : st;
+		esac;
+
+
+  FAIRNESS running;
+
+
